@@ -46,11 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alamvorm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Alamvorm.Designer.cs">
+      <DependentUpon>Alamvorm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Avavorm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Avavorm.Designer.cs">
       <DependentUpon>Avavorm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Peavorm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Peavorm.Designer.cs">
+      <DependentUpon>Peavorm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PictureViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PictureViewerForm.Designer.cs">
+      <DependentUpon>PictureViewerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
