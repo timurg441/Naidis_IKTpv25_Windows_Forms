@@ -8,13 +8,13 @@ using System.Windows.Forms;
 
 namespace Naidis_IKTpv25_Windows_Forms
 {
-    public class PeaVorm : Form
+    public partial class Peavorm : Form
     {
         private Button nuppVike;
         private Button nuppKeskmine;
         private Button nuppSuur;
 
-        public PeaVorm()
+        public Peavorm()
         {
             Text = "Peaaken - Valikud";
             Size = new Size(400, 250);
@@ -50,19 +50,19 @@ namespace Naidis_IKTpv25_Windows_Forms
         private void NuppVike_Click(object sender, EventArgs e)
         {
             // Edastame konstruktorile: pealkiri, laius, kõrgus, värv
-            AlamVorm vikeVorm = new AlamVorm("Väike Aken", 300, 200, Color.LightGreen);
+            Alamvorm vikeVorm = new Alamvorm("Väike Aken", 300, 200, Color.LightGreen);
             vikeVorm.Show();
         }
 
         private void NuppKeskmine_Click(object sender, EventArgs e)
         {
-            AlamVorm keskmineVorm = new AlamVorm("Keskmine Aken", 500, 350, Color.LightSkyBlue);
+            Alamvorm keskmineVorm = new Alamvorm("Keskmine Aken", 500, 350, Color.LightSkyBlue);
             keskmineVorm.Show();
         }
 
         private void NuppSuur_Click(object sender, EventArgs e)
         {
-            AlamVorm suurVorm = new AlamVorm("Suur Aken", 700, 500, Color.LightCoral);
+            Alamvorm suurVorm = new Alamvorm("Suur Aken", 700, 500, Color.LightCoral);
             suurVorm.Show();
         }
     }

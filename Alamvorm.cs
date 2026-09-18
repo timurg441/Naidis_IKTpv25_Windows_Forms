@@ -8,10 +8,10 @@ using System.Windows.Forms;
 
 namespace Naidis_IKTpv25_Windows_Forms
 {
-    public class AlamVorm : Form
+    public partial class Alamvorm : Form
     {
         // Konstruktor, mis võtab vastu atribuutide väärtused
-        public AlamVorm(string pealkiri, int laius, int korgus, Color taustavarv)
+        public Alamvorm(string pealkiri, int laius, int korgus, Color taustavarv)
         {
             // Määrame vormi omadused edastatud parameetrite põhjal
             this.Text = pealkiri;

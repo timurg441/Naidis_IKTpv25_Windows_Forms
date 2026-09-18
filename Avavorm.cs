@@ -40,8 +40,15 @@ namespace Naidis_IKTpv25_Windows_Forms
             tn.Nodes.Add(new TreeNode("DataGridView")); // tabel
             tn.Nodes.Add(new TreeNode("MainMenu")); // menüü
 
+            TreeNode tnRakendused = new TreeNode("Rakendused");
+            tnRakendused.Nodes.Add(new TreeNode("Picture Viewer"));
+            tnRakendused.Nodes.Add(new TreeNode("Math Quiz"));
+            tnRakendused.Nodes.Add(new TreeNode("Matching Game"));
+
             tree.Nodes.Add(tn);
-            //nupp, silt ja piltt
+            tree.Nodes.Add(tnRakendused);
+
+            // nupp, silt ja pilt
             nupp = new Button();
             nupp.Text = "Vajuta mind";
             nupp.Location = new Point(300, 100);
@@ -59,7 +66,7 @@ namespace Naidis_IKTpv25_Windows_Forms
             silt.MouseHover += Silt_MouseHover;
 
             pilt = new PictureBox();
-            pilt.Image = Image.FromFile(@"..\..\Pildid\AI_bot.png");
+            pilt.Image = Image.FromFile(@"C:\Users\opilane\source\repos\Naidis_IKTpv25_Windows_Forms\Pildid\graident-ai-robot-vectorart_78370-4114.png");
             pilt.Location = new Point(300, 200);
             pilt.Size = new Size(200, 200);
             pilt.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -88,7 +95,6 @@ namespace Naidis_IKTpv25_Windows_Forms
         {
             silt.BorderStyle = BorderStyle.None;
             silt.BackColor = Color.Gray;
-
         }
 
         private void Tree_AfterSelect(object sender, TreeViewEventArgs e)
@@ -138,7 +144,6 @@ namespace Naidis_IKTpv25_Windows_Forms
             }
             else if (e.Node.Text == "Tekstiväli")
             {
-
                 tbox = new TextBox();
                 tbox.Location = new Point(200, 500);
                 tbox.Width = 200;
@@ -170,14 +175,12 @@ namespace Naidis_IKTpv25_Windows_Forms
                 tab1.Controls.Add(brauser);
 
                 tab2 = new TabPage("Tee ise");
-                // Lisame sisu teisele vahekaardile
 
                 tab3 = new TabPage("+");
                 tabs.SelectedIndexChanged += (s, arg) =>
                 {
                     if (tabs.SelectedTab == tab3)
                     {
-                        // 2. Küsitakse veebiaadressi (URL)
                         string veebiaadress = Interaction.InputBox(
                             "Sisesta veebiaadress, mida soovid avada:",
                             "Veebilehe avamine",
@@ -188,23 +191,21 @@ namespace Naidis_IKTpv25_Windows_Forms
                             tabs.SelectedTab = tab1;
                             return;
                         }
-                        // Lisame automaatselt "https://", kui kasutaja unustas selle kirjutada
                         if (!veebiaadress.StartsWith("http://www.") && !veebiaadress.StartsWith("https://www."))
                         {
                             veebiaadress = "https://www." + veebiaadress;
                         }
                         Uri uri = new Uri(veebiaadress);
-                        string uuskaardinimi = uri.Host; // Kasutame domeeninime vahekaardi nimeks
+                        string uuskaardinimi = uri.Host;
                         if (uuskaardinimi.StartsWith("www."))
                         {
-                            uuskaardinimi = uuskaardinimi.Substring(4); // Eemaldame "www." algusest
+                            uuskaardinimi = uuskaardinimi.Substring(4);
                         }
                         int pos = uuskaardinimi.LastIndexOf('.');
                         if (pos > 0)
                         {
-                            uuskaardinimi = uuskaardinimi.Substring(0, pos).ToUpper(); // Eemaldame domeeni lõpu
+                            uuskaardinimi = uuskaardinimi.Substring(0, pos).ToUpper();
                         }
-                        // 3. Kinnituse küsimine
                         var vastus = MessageBox.Show(
                                 $"Kas soovid lisada uue vahekaardi nimega '{uuskaardinimi}'?",
                                 "Kinnita",
@@ -217,7 +218,7 @@ namespace Naidis_IKTpv25_Windows_Forms
                         TabPage uusVahekaart = new TabPage(uuskaardinimi);
                         brauser = new WebBrowser();
                         brauser.Dock = DockStyle.Fill;
-                        brauser.ScriptErrorsSuppressed = true; // Peidab IE skriptitõrgete
+                        brauser.ScriptErrorsSuppressed = true;
                         try
                         {
                             brauser.Url = new Uri(veebiaadress);
@@ -250,7 +251,7 @@ namespace Naidis_IKTpv25_Windows_Forms
             }
             else if (e.Node.Text == "DataGridView")
             {
-                DataSet ds = new DataSet("XML fail"); // loeb faili
+                DataSet ds = new DataSet("XML fail");
                 ds.ReadXml(@"..\..\menu.xml");
                 DataGridView dg = new DataGridView();
                 dg.Width = 490;
@@ -277,13 +278,31 @@ namespace Naidis_IKTpv25_Windows_Forms
                 menu.MenuItems.Add(menuFile);
                 Menu = menu;
             }
+            else if (e.Node.Text == "Picture Viewer")
+            {
+                PictureViewerForm viewer = new PictureViewerForm();
+                viewer.Show();
+                tree.SelectedNode = null;
+            }
+            else if (e.Node.Text == "Math Quiz")
+            {
+                MathQuizForm quiz = new MathQuizForm();
+                quiz.Show();
+                tree.SelectedNode = null;
+            }
+            else if (e.Node.Text == "Matching Game")
+            {
+                MatchingGameForm game = new MatchingGameForm();
+                game.Show();
+                tree.SelectedNode = null;
+            }
         }
 
         private void menuFile_ClearTabs(object sender, EventArgs e)
         {
             tabs.Hide();
-
         }
+
         private void menuFile_Clear(object sender, EventArgs e)
         {
             Controls.Clear();
@@ -293,6 +312,7 @@ namespace Naidis_IKTpv25_Windows_Forms
         {
             OpenForm();
         }
+
         private void OpenForm()
         {
             Form uusvorm = new Form();
@@ -301,6 +321,7 @@ namespace Naidis_IKTpv25_Windows_Forms
             uusvorm.StartPosition = FormStartPosition.CenterParent;
             uusvorm.Show();
         }
+
         private void menuFile_Exit(object sender, EventArgs e)
         {
             Close();
@@ -346,6 +367,7 @@ namespace Naidis_IKTpv25_Windows_Forms
                 mruut2.Text = "Näita pilt";
             }
         }
+
         private void Mruut_CheckedChanged(object sender, EventArgs e)
         {
             if (mruut1.Checked)
@@ -359,7 +381,5 @@ namespace Naidis_IKTpv25_Windows_Forms
                 mruut1.Text = "Tee väiksemaks";
             }
         }
-
-
     }
 }
