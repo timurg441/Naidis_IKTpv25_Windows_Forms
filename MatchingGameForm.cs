@@ -21,7 +21,7 @@ namespace Naidis_IKTpv25_Windows_Forms
         private List<string> icons = new List<string>()
         {
             "b", "b", "N", "N", "m", "m", "v", "v",
-            "w", "w", "z", "z", "N", "N", "k", "k"
+            "w", "w", "Z", "z", "N", "N", "k", "k"
         };
 
         public MatchingGameForm()
